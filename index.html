@@ -39,9 +39,9 @@
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/general.css" type="text/css"/>
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/jscripts/jquery/plugins/contextMenu/jquery.contextMenu.css" type="text/css"/>
     
-    <link rel="stylesheet" href="styles/custom.css" type="text/css" media="all"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="./styles/custom.css" type="text/css" media="all"/>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
+    <link rel="manifest" href="./manifest.json">
 
     <script>
     var IE = false;
@@ -56,8 +56,6 @@
     .media-body > div:nth-child(1) { font-size: 18px; color: #21376a; }
     .date_container .date_info { padding-bottom: 50px !important; }
     .date_info { border-left: 0px !important; border-top: 0px !important; border-bottom: 1px black solid !important; }
-    
-    /* Wir blenden die Navigationselemente aus, aber lassen den Login-Button da */
     #top-navigation .nav.navbar-nav { display: none; }
     </style>
 
@@ -76,7 +74,7 @@
         <div class="community-facelift header-logo-box">
             <div class="container" style="overflow: hidden;">
                 <a title="Home" href="#">
-                    <img src="img/Community_Banner.jpg" class="img-responsive" alt="page logo"/>
+                    <img src="./img/Community_Banner.jpg" class="img-responsive" alt="page logo"/>
                 </a>
             </div>
         </div>
@@ -129,7 +127,7 @@
             <p>&nbsp;im Portal des Campus Management Systems der FHDW.</p>
             <p>&nbsp;</p>
             <div>
-                <img align="left" border="0" hspace="10" src="img/homescreen192.png" style="width: 195px; height: auto;"/>
+                <img align="left" border="0" hspace="10" src="./img/homescreen192.png" style="width: 195px; height: auto;"/>
                 <p style="box-sizing: border-box; margin: 0px 0px 10px; color: #333333; font-family: Arial, Helvetica, sans-serif">
                     &nbsp;
                     <span style="box-sizing: border-box; font-weight: 700">F&uuml;r Studierende sind folgende Funktionen umgesetzt:</span>
@@ -234,16 +232,14 @@
             <script type="text/javascript">
             $(document).ready(function() {
                 
-                // 1. Service Worker registrieren (wie im Beispiel)
                 if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('sw.js');
+                    navigator.serviceWorker.register('./sw.js');
                 }
 
-                // 2. Login Logic
                 var loginForm = $('#cloudLogin');
 
                 loginForm.submit(function(e) {
-                    e.preventDefault(); // Verhindert Neuladen der Seite
+                    e.preventDefault(); 
                     
                     $('#loginResponse').html('');
                     $('#loginResponseContainer').addClass("hidden");
@@ -252,26 +248,19 @@
                     var password = $('input[name="password"]').val().trim();
 
                     if(username === "Admin" && password === "Affe12345") {
-                        // Flag für Dashboard Welcome-Nachricht
                         try { sessionStorage.setItem('showWelcome', 'true'); } catch(e){}
 
-                        // --- PUSH PERMISSION LOGIK ---
-                        // Wenn der Browser Notifications kann UND sie auf "default" (noch nicht gefragt) stehen
                         if ("Notification" in window && Notification.permission === "default") {
                             
-                            // WIR WARTEN AUF DAS ERGEBNIS!
                             Notification.requestPermission().then(function(permission) {
-                                // Egal ob "granted" oder "denied", wir leiten JETZT erst weiter
-                                window.location.href = "dashboard.html";
+                                window.location.href = "./dashboard.html";
                             });
 
                         } else {
-                            // Wenn schon erlaubt/blockiert oder nicht unterstützt: Sofort weiter
-                            window.location.href = "dashboard.html";
+                            window.location.href = "./dashboard.html";
                         }
                         
                     } else {
-                        // Fehler anzeigen
                         $('#loginResponse').html("Benutzername oder Passwort falsch.");
                         $('#loginResponseContainer').removeClass("hidden");
                         
