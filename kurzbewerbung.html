@@ -7,9 +7,9 @@
     <meta name="robots" content="NOINDEX, NOFOLLOW"/>
     <title>Kurzbewerbung Master-Studium</title>
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#21376a">
-    <link rel="apple-touch-icon" href="img/homescreen192.png">
+    <link rel="apple-touch-icon" href="./img/homescreen192.png">
 
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/style.css" type="text/css"/>
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/vorlage.css" type="text/css"/>
@@ -19,15 +19,13 @@
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/buttons.css" type="text/css"/>
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/content.css" type="text/css"/>
     
-    <link rel="stylesheet" href="styles/custom.css" type="text/css" media="all"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./styles/custom.css" type="text/css" media="all"/>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
 
     <style>
-        /* Navbar Fixes */
         .navbar-nav > li > a { line-height: 20px !important; }
         .navbar { min-height: 50px !important; border: 1px solid transparent; margin-bottom: 20px; }
 
-        /* --- SPEZIFISCHE STYLES FÜR DIESE SEITE --- */
         .fun-container {
             text-align: center;
             margin-top: 20px;
@@ -35,7 +33,7 @@
         }
 
         .fun-title {
-            font-size: 28px; /* Etwas kleiner damit es besser passt */
+            font-size: 28px;
             font-weight: bold;
             color: #21376a;
             margin-bottom: 20px;
@@ -43,7 +41,7 @@
         }
 
         .fun-image {
-            max-width: 350px; /* Bildgröße begrenzt! */
+            max-width: 350px;
             width: 100%;
             height: auto;
             border-radius: 10px;
@@ -59,8 +57,8 @@
     <div id="container-spacer">
         <div class="community-facelift header-logo-box">
             <div class="container" style="overflow: hidden;">
-                <a title="Home" href="dashboard.html">
-                    <img src="img/Community_Banner.jpg" class="img-responsive" alt="page logo"/>
+                <a title="Home" href="./dashboard.html">
+                    <img src="./img/Community_Banner.jpg" class="img-responsive" alt="page logo"/>
                 </a>
             </div>
         </div>
@@ -74,19 +72,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="dashboard.html" class="navbar-brand">
+                    <a href="./dashboard.html" class="navbar-brand">
                         <span class="glyphicon glyphicon-home"></span>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-id">
                     <ul class="nav navbar-nav">
-                        <li><a href="profile.html">Mein Profil</a></li>
-                        <li><a href="timetable.html">Stundenplan</a></li>
-                        <li><a href="pruefungstermine.html">Prüfungstermine</a></li>
-                        <li><a href="notenuebersicht.html">Notenübersicht</a></li>
-                        <li><a href="dokumente.html">Dokumente</a></li>
-                        <li><a href="abgaben.html">Abgaben</a></li>
-                        <li class="active"><a href="kurzbewerbung.html">Kurzbewerbung Master-Studium</a></li>
+                        <li><a href="./profile.html">Mein Profil</a></li>
+                        <li><a href="./timetable.html">Stundenplan</a></li>
+                        <li><a href="./pruefungstermine.html">Prüfungstermine</a></li>
+                        <li><a href="./notenuebersicht.html">Notenübersicht</a></li>
+                        <li><a href="./dokumente.html">Dokumente</a></li>
+                        <li><a href="./abgaben.html">Abgaben</a></li>
+                        <li class="active"><a href="./kurzbewerbung.html">Kurzbewerbung Master-Studium</a></li>
                     </ul>
                 </div>
             </div>
@@ -99,15 +97,15 @@
                         <span class="far fa-user"></span> Mehmet Güngörmez <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="index.html"><span class="far fa-power-off"></span> Ausloggen</a></li>
+                        <li><a href="./index.html"><span class="far fa-power-off"></span> Ausloggen</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="pull-left">
                 <div class="community-facelift btn-group btn-breadcrumb">
-                    <a class="btn btn-default" href="dashboard.html">Startseite</a>
-                    <a class="btn btn-default" href="kurzbewerbung.html">Kurzbewerbung Master-Studium</a>
+                    <a class="btn btn-default" href="./dashboard.html">Startseite</a>
+                    <a class="btn btn-default" href="./kurzbewerbung.html">Kurzbewerbung Master-Studium</a>
                 </div>
             </div>
         </div>
@@ -118,7 +116,7 @@
                     
                     <div class="fun-container">
                         <h1 class="fun-title">Du und Master? Scheiß drauf!<br>Genieße jetzt nach dem Bachelor dein Leben.</h1>
-                        <img src="img/gorilla.jpg" alt="Lachender Gorilla" class="fun-image">
+                        <img src="./img/gorilla.jpg" alt="Lachender Gorilla" class="fun-image">
                     </div>
 
                 </div>
@@ -146,10 +144,9 @@
 
     <script>
         $(document).ready(function() {
-            // Service Worker registrieren
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('sw.js');
+                    navigator.serviceWorker.register('./sw.js');
                 });
                 var inactivityTime = function () {
             var time;
@@ -159,7 +156,7 @@
             document.onclick = resetTimer;
 
             function logout() {
-                window.location.href = 'index.html';
+                window.location.href = './index.html';
             }
 
             function resetTimer() {
