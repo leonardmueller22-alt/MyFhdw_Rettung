@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Abgaben</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#21376a">
-    <link rel="apple-touch-icon" href="img/homescreen192.png">
+    <link rel="apple-touch-icon" href="./img/homescreen192.png">
     
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/style.css" type="text/css"/>
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/vorlage.css" type="text/css"/>
@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/jscripts/bootstrap/css/bootstrap.custom.css" type="text/css"/>
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/buttons.css" type="text/css"/>
     <link rel="stylesheet" href="https://d2q8mlawr49whx.cloudfront.net/V18.05.5/styles/content.css" type="text/css"/>
-    <link rel="stylesheet" href="styles/custom.css" type="text/css" media="all"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./styles/custom.css" type="text/css" media="all"/>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
     
     <style>
         .navbar-nav > li > a { line-height: 20px !important; }
@@ -38,8 +38,8 @@
     <div id="container-spacer">
         <div class="community-facelift header-logo-box">
             <div class="container" style="overflow: hidden;">
-                <a title="Home" href="dashboard.html">
-                    <img src="img/Community_Banner.jpg" class="img-responsive" alt="page logo"/>
+                <a title="Home" href="./dashboard.html">
+                    <img src="./img/Community_Banner.jpg" class="img-responsive" alt="page logo"/>
                 </a>
             </div>
         </div>
@@ -49,17 +49,17 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-id">
                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
-                    <a href="dashboard.html" class="navbar-brand"><span class="glyphicon glyphicon-home"></span></a>
+                    <a href="./dashboard.html" class="navbar-brand"><span class="glyphicon glyphicon-home"></span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-id">
                     <ul class="nav navbar-nav">
-                        <li><a href="profile.html">Mein Profil</a></li>
-                        <li><a href="timetable.html">Stundenplan</a></li>
-                        <li><a href="pruefungstermine.html">Prüfungstermine</a></li>
-                        <li><a href="notenuebersicht.html">Notenübersicht</a></li>
-                        <li><a href="dokumente.html">Dokumente</a></li>
-                        <li class="active"><a href="abgaben.html">Abgaben</a></li>
-                        <li><a href="kurzbewerbung.html">Kurzbewerbung Master-Studium</a></li>
+                        <li><a href="./profile.html">Mein Profil</a></li>
+                        <li><a href="./timetable.html">Stundenplan</a></li>
+                        <li><a href="./pruefungstermine.html">Prüfungstermine</a></li>
+                        <li><a href="./notenuebersicht.html">Notenübersicht</a></li>
+                        <li><a href="./dokumente.html">Dokumente</a></li>
+                        <li class="active"><a href="./abgaben.html">Abgaben</a></li>
+                        <li><a href="./kurzbewerbung.html">Kurzbewerbung Master-Studium</a></li>
                     </ul>
                 </div>
             </div>
@@ -86,14 +86,12 @@
 
     <script>
         $(document).ready(function() {
-            // Service Worker beim Laden registrieren (GENAU WIE IM DASHBOARD)
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js');
+                navigator.serviceWorker.register('./sw.js');
             }
 
             var currentRating = 0;
 
-            // Sterne Logik
             $('.star-rating .fa-star').on('click', function() {
                 currentRating = $(this).data('value');
                 $('.star-rating .fa-star').each(function() {
@@ -102,30 +100,25 @@
                 $('#submitBtn').prop('disabled', false);
             });
 
-            // KLICK-HANDLER: Exakte Kopie der Dashboard-Logik
             $('#submitBtn').on('click', function(e) {
                 e.preventDefault();
                 var btn = $(this);
                 
-                // Sofort Feedback geben
                 btn.text("Gesendet!").prop('disabled', true);
 
                 if (Notification.permission === "granted") {
-                    // Nutzung von getRegistration(), da dies beim Login funktioniert
                     navigator.serviceWorker.getRegistration().then(function(reg) {
                         var options = {
                             body: 'Vielen Dank für deine ' + currentRating + ' Sterne!',
-                            icon: 'img/homescreen192.png',
+                            icon: './img/homescreen192.png',
                             vibrate: [100, 50, 100],
                             data: { dateOfArrival: Date.now() }
                         };
                         
                         if (reg) {
-                            // Der Weg über den Service Worker
                             reg.showNotification('Bewertung erfolgreich!', options)
                                .catch(function(err) { console.log("Fehler SW Notification", err); });
                         } else {
-                            // Fallback, falls reg null ist (sollte nicht passieren, wenn Login geht)
                             try {
                                 new Notification('Bewertung erfolgreich!', options);
                             } catch(e) { console.log("Fehler Fallback", e); }
